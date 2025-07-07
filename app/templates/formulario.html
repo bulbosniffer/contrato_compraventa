@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contrato de Compraventa de Terreno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    function numeroALetras() {
+      const numero = document.getElementById('valor').value;
+      if (!numero) return;
+      fetch('/num2words/' + numero)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('valor_letra').value = data + " PESOS 00/100 M.N.";
+        });
+    }
+  </script>
+</head>
+<body>
+  <h2>Generar Contrato de Compraventa de Terreno</h2>
+  <form method="POST">
+
+    <h3>Lugar, Fecha y Hora</h3>
+    <input name="lugar" placeholder="Lugar de firma (Municipio, Estado)" required>
+    <input name="fecha" placeholder="Fecha (DD de MES de AAAA)" required>
+    <input name="hora" placeholder="Hora (HH:MM HRS.)" required>
+
+    <h3>Datos del Vendedor</h3>
+    <input name="nombre_vendedor" placeholder="Nombre completo" required>
+    <input name="direccion_vendedor" placeholder="Dirección" required>
+    <input name="identificacion_vendedor" placeholder="Identificación oficial" required>
+
+    <h3>Datos del Comprador</h3>
+    <input name="nombre_comprador" placeholder="Nombre completo" required>
+    <input name="direccion_comprador" placeholder="Dirección" required>
+    <input name="identificacion_comprador" placeholder="Identificación oficial" required>
+
+    <h3>Datos del Terreno</h3>
+    <input name="ubicacion_terreno" placeholder="Ubicación exacta" required>
+    <input name="norte" placeholder="Colindancia Norte" required>
+    <input name="sur" placeholder="Colindancia Sur" required>
+    <input name="oriente" placeholder="Colindancia Oriente" required>
+    <input name="poniente" placeholder="Colindancia Poniente" required>
+
+    <input id="valor" name="valor" placeholder="Valor en pesos (número)" type="number" required oninput="numeroALetras()">
+    <input id="valor_letra" name="valor_letra" placeholder="Valor en letra" required readonly>
+
+    <h3>Datos de Testigo 1</h3>
+    <input name="nombre_testigo1" placeholder="Nombre completo" required>
+    <input name="direccion_testigo1" placeholder="Domicilio" required>
+    <input name="identificacion_testigo1" placeholder="Identificación oficial" required>
+
+    <h3>Datos de Testigo 2</h3>
+    <input name="nombre_testigo2" placeholder="Nombre completo" required>
+    <input name="direccion_testigo2" placeholder="Domicilio" required>
+    <input name="identificacion_testigo2" placeholder="Identificación oficial" required>
+
+    <h3>Autoridades Ejidales / Comunales (opcional)</h3>
+    <input name="presidente_comisariado" placeholder="Presidente del Comisariado Ejidal">
+    <input name="presidente_consejo" placeholder="Presidente del Consejo de Vigilancia">
+    <input name="secretario" placeholder="Secretario">
+    <input name="tesorero" placeholder="Tesorero">
+
+    <button type="submit">Generar PDF</button>
+  </form>
+</body>
+</html>
