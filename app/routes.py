@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, send_file
 from app.contrato_generator import generar_contrato
 from num2words import num2words
 
-app = Flask(__name__)
+from app import app 
 
 @app.route('/', methods=['GET', 'POST'])
 def formulario():
