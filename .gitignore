@@ -1,0 +1,25 @@
+# Entornos virtuales
+venv/
+.env
+*.env
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos temporales
+*.log
+*.bak
+.DS_Store
+
+# PDFs o archivos generados
+*.pdf
+
+# Deploy en plataformas
+*.sqlite3
+instance/
